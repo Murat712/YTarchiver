@@ -1,3 +1,4 @@
+import { PORT, NODE_ENV } from './config/env.js';
 import express from 'express';
 import rateLimit from 'express-rate-limit';
 import ExpressMongoSanitize from 'express-mongo-sanitize';
@@ -6,7 +7,6 @@ import helmet from 'helmet';
 import cors from 'cors';
 import xss from 'xss';
 import connectDB from './config/db.js';
-import { port, NODE_ENV } from './config/env.js';
 import globalErrorHandler from './middlewares/globalErrorHandler.js';
 import authRoute from './routes/authRoute.js';
 import AppError from './utils/AppError.js';
@@ -72,8 +72,8 @@ app.all(/(.*)/, (req, res, next) => {
 
 try {
   await connectDB();
-  app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
   });
 } catch {
   process.exit(1);
