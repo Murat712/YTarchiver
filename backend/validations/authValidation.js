@@ -1,7 +1,9 @@
 import Joi from 'joi';
 
-const usernameField = Joi.string().alphanum().min(5).max(30);
-const passwordField = Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{8,100}$'));
+const usernameField = Joi.string().pattern(/^[a-zA-Z0-9_]{5,30}$/);
+const passwordField = Joi.string().pattern(
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,100}$/,
+);
 
 export const loginSchema = Joi.object({
   username: usernameField.required(),

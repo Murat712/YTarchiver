@@ -22,9 +22,11 @@ const loginLimiter = rateLimit({
 });
 
 router.route('/register').post(validate(loginSchema), authController.register);
+
 router
   .route('/login')
-  .post(validate(registerSchema), loginLimiter, authController.login);
+  .post(loginLimiter, validate(registerSchema), authController.login);
+
 router
   .route('/update')
   .patch(
