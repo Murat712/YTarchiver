@@ -6,6 +6,15 @@ import AppError from '../utils/AppError.js';
 
 const register = async (req, res, next) => {
   try {
+    if (await User.exists({}))
+      return next(
+        new AppError(
+          'There is already a registered user',
+          403,
+          'User Register',
+        ),
+      );
+
     const { username, password } = req.body;
 
     await User.create({ username, password });
