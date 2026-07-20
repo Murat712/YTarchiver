@@ -33,8 +33,8 @@ export const downloadVideo = async (args) => {
     ...subsArgs,
     '-r',
     downloadSpeed,
-    '-P',
-    downloadPath,
+    '-o',
+    `${downloadPath}/%(channel)s/%(title)s [%(id)s].%(ext)s`,
     videoUrl,
   ];
 
