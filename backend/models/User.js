@@ -1,15 +1,17 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
+import {
+  requiredUniqueString,
+  requiredString,
+} from '../utils/schemaHelpers.js';
+
 const userSchema = new mongoose.Schema(
   {
     username: {
-      type: String,
-      unique: true,
-      required: true,
+      ...requiredUniqueString,
       minlength: 5,
       maxlength: 30,
-      trim: true,
     },
     password: {
       type: String,
