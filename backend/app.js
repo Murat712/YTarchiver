@@ -10,7 +10,7 @@ import xss from 'xss';
 import globalErrorHandler from './middlewares/globalErrorHandler.js';
 import authRoute from './routes/authRoute.js';
 import AppError from './utils/AppError.js';
-import downloadRoute from './routes/downloadRoute.js';
+import mediaRoute from './routes/mediaRoute.js';
 
 export const app = express();
 app.use(express.json());
@@ -64,7 +64,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/auth', authRoute);
-app.use('/api/video', downloadRoute);
+app.use('/api/media', mediaRoute);
 
 app.all(/(.*)/, (req, res, next) => {
   return next(new AppError(`Cannot find ${req.originalUrl}`, 404));

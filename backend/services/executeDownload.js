@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const downloadPath = path.join(__dirname, '../../downloads');
 const downloadSpeed = '3M'; // daha sonra kullanıcı ayarlarından çekilecek
 
-export const downloadVideo = async (args) => {
+export const executeDownload = async (args) => {
   const {
     multipleVideo,
     audioFormat,

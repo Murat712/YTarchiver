@@ -2,7 +2,7 @@ import Video from '../models/Video.js';
 import AppError from '../utils/AppError.js';
 import { getMultipleVideoInfo } from '../utils/getMultipleVideosInfo.js';
 import { getVideoInfo } from '../utils/getVideoInfo.js';
-import { downloadVideo } from '../services/downloadVideo.js';
+import { executeDownload } from '../services/executeDownload.js';
 
 const getInfo = async (req, res, next) => {
   try {
@@ -38,7 +38,7 @@ const downloadMedia = async (req, res, next) => {
 
     const args = { multipleVideo, videoUrl: mediaUrl, ...req.body };
 
-    await downloadVideo(args);
+    await executeDownload(args);
 
     res.status(201).json({ message: 'Video Downloaded Successfully' });
   } catch (error) {
