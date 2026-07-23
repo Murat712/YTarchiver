@@ -1,6 +1,7 @@
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import AppError from './AppError.js';
+const preferredLang = 'tr'; // daha sonra kullanıcı ayarlarından çekilecek
 
 const execFileAsync = promisify(execFile);
 
@@ -8,6 +9,8 @@ export const getVideoInfo = async (videoUrl) => {
   try {
     const { stdout } = await execFileAsync('yt-dlp', [
       '--dump-single-json',
+      '--extractor-args',
+      `youtube:lang=${preferredLang}`,
       videoUrl,
     ]);
 
